@@ -88,9 +88,38 @@ void KidMotorV4::setMotor(uint8_t ch, uint8_t dir, uint8_t speed) {
   this->write(ch == 0 ? 0x00 : 0x01, (dir << 7) | (speed & 0x7F));
 }
 
+void KidMotorV4::move(uint8_t dir, uint8_t speed) {
+  uint8_t dir1 = FORWARD; // left wheel
+  uint8_t dir2 = FORWARD; // right wheel
+  if (dir == this->FORWARD) {
+    dir1 = FORWARD;
+    dir2 = FORWARD;
+  } else if (dir == this->BACKWARD) {
+    dir1 = BACKWARD;
+    dir2 = BACKWARD;
+  } else if (dir == this->TURN_LEFT) {
+    dir1 = STOP;
+    dir2 = FORWARD;
+  } else if (dir == this->TURN_RIGHT) {
+    dir1 = FORWARD;
+    dir2 = STOP;
+  } else if (dir == this->SPIN_LEFT) {
+    dir1 = BACKWARD;
+    dir2 = FORWARD;
+  } else if (dir == this->SPIN_RIGHT) {
+    dir1 = FORWARD;
+    dir2 = BACKWARD;
+  }
+  uint8_t buff[2] = {
+    ((dir1 == FORWARD ? 1 : 0) << 7) | (dir1 != STOP ? speed : 0),
+    ((dir2 == FORWARD ? 1 : 0) << 7) | (dir2 != STOP ? speed : 0),
+  };
+  this->write(0x00, buff, 2);
+}
+
 void KidMotorV4::pinMode(uint8_t ch, uint8_t mode) {
   static uint8_t mode_tmp = 0;
-  if (mode == 1) {
+  if (mode == OUTPUT) {
     mode_tmp |= 1 << ch;
   } else {
     mode_tmp &= ~(1 << ch);

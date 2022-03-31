@@ -36,10 +36,17 @@ class KidMotorV4 {
 
         const uint8_t FORWARD = 1;
         const uint8_t BACKWARD = 0;
-        
+        const uint8_t TURN_LEFT = 2;
+        const uint8_t TURN_RIGHT = 3;
+        const uint8_t SPIN_LEFT = 4;
+        const uint8_t SPIN_RIGHT = 5;
+        const uint8_t STOP = 6;
+
         KidMotorV4(TwoWire *wire = &Wire) ;
 
         void setMotor(uint8_t ch, uint8_t dir, uint8_t speed) ;
+        void move(uint8_t dir, uint8_t speed = 0) ;
+
         void pinMode(uint8_t ch, uint8_t mode) ;
         void digitalWrite(uint8_t ch, uint8_t val) ;
         int digitalRead(uint8_t ch) ;
