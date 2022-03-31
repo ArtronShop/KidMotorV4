@@ -142,7 +142,7 @@ void KidMotorV4::servoUnlock(uint8_t ch) {
 }
 
 int KidMotorV4::distance(uint8_t trig_ch, uint8_t echo_ch) {
-  this->write(0x30, 0x80 | (trig_ch << 3) | (echo_ch & 0x07)); // Write ADC trig, echo pin and set START flag
+  this->write(0x30, 0x80 | (trig_ch << 3) | (echo_ch & 0x07)); // Write trig, echo pin and set START flag
   do {
     delay(1);
   } while((this->read(0x30) & 0x80) != 0);

@@ -30,6 +30,12 @@ class KidMotorV4 {
 
         const uint8_t A1 = 3;
         const uint8_t A2 = 4;
+
+        const uint8_t CH1 = 1;
+        const uint8_t CH2 = 2;
+
+        const uint8_t FORWARD = 1;
+        const uint8_t BACKWARD = 0;
         
         KidMotorV4(TwoWire *wire = &Wire) ;
 
