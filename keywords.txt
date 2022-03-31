@@ -1,0 +1,29 @@
+#######################################
+# Syntax Coloring Map For SIM76xx
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+KidMotorV4 KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+setMotor	KEYWORD2
+move	KEYWORD2
+
+pinMode	KEYWORD2
+digitalWrite	KEYWORD2
+digitalRead	KEYWORD2
+analogRead	KEYWORD2
+analogWrite	KEYWORD2
+
+servoAngle	KEYWORD2
+servoUnlock	KEYWORD2
+
+distance	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
